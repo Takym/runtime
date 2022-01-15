@@ -281,6 +281,8 @@ while [[ $# > 0 ]]; do
           os="illumos" ;;
         solaris)
           os="Solaris" ;;
+        uefi)
+          os="UEFI" ;;
         *)
           echo "Unsupported target OS '$2'."
           echo "The allowed values are windows, Linux, FreeBSD, OSX, MacCatalyst, tvOS, tvOSSimulator, iOS, iOSSimulator, Android, Browser, illumos and Solaris."
