@@ -35,6 +35,12 @@
     <OfficialBuildRID Include="linux-musl-arm64">
       <Platform>arm64</Platform>
     </OfficialBuildRID>
+    <OfficialBuildRID Include="uefi-x86">
+      <Platform>x86</Platform>
+    </OfficialBuildRID>
+    <OfficialBuildRID Include="uefi-x64">
+      <Platform>x64</Platform>
+    </OfficialBuildRID>
 
     <!-- The following RIDs are not officically supported and are not
          built during official builds, however we wish to include them

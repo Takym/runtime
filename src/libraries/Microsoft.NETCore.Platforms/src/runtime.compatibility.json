@@ -8595,7 +8595,7 @@
     "base"
   ],
   "uefi-x86": [
-    "uefi-x64",
+    "uefi-x86",
     "uefi",
     "any",
     "base"

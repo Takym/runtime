@@ -196,6 +196,12 @@ if(CLR_CMAKE_HOST_OS STREQUAL Emscripten)
     set(CLR_CMAKE_HOST_BROWSER 1)
 endif(CLR_CMAKE_HOST_OS STREQUAL Emscripten)
 
+if(CLR_CMAKE_HOST_OS STREQUAL UEFI)
+    # Maybe, a UEFI as a host OS would not be used.
+    # I do not have an idea for situations building on UEFI.
+    set(CLR_CMAKE_HOST_UEFI 1)
+endif(CLR_CMAKE_HOST_OS STREQUAL UEFI)
+
 #--------------------------------------------
 # This repo builds two set of binaries
 # 1. binaries which execute on target arch machine
@@ -377,9 +383,11 @@ if(CLR_CMAKE_TARGET_UNIX)
     else()
         clr_unknown_arch()
     endif()
+elseif(CLR_CMAKE_TARGET_OS STREQUAL UEFI)
+    set(CLR_CMAKE_TARGET_UEFI 1)
 else()
     set(CLR_CMAKE_TARGET_WIN32 1)
-endif(CLR_CMAKE_TARGET_UNIX)
+endif()
 
 # check if host & target os/arch combination are valid
 if (CLR_CMAKE_TARGET_OS STREQUAL CLR_CMAKE_HOST_OS)

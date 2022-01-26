@@ -476,7 +476,7 @@ if(CLR_CMAKE_HOST_UNIX)
   add_compile_options(${CLR_ADDITIONAL_COMPILER_OPTIONS})
 endif(CLR_CMAKE_HOST_UNIX)
 
-if (MSVC)
+if(MSVC)
   # Compile options for targeting windows
 
   add_compile_options($<$<COMPILE_LANGUAGE:C,CXX>:/nologo>) # Suppress Startup Banner
@@ -594,7 +594,15 @@ if (MSVC)
 
   # Don't display the output header when building RC files.
   add_compile_options($<$<COMPILE_LANGUAGE:RC>:/nologo>)
-endif (MSVC)
+
+  # For UEFI support
+  if(CLR_CMAKE_TARGET_UEFI)
+    add_definitions(-DUEFI)
+    add_compile_options(/GS-)
+    add_compile_options(/SUBSYSTEM:EFI_APPLICATION)
+    add_linker_flag(/ENTRY:UefiMain)
+  endif(CLR_CMAKE_TARGET_UEFI)
+endif(MSVC)
 
 if(CLR_CMAKE_ENABLE_CODE_COVERAGE)
 

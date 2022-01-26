@@ -129,7 +129,7 @@ namespace BundleTests.Helpers
                 "win" => OSPlatform.Windows,
                 "osx" => OSPlatform.OSX,
                 "linux" => OSPlatform.Linux,
-                "uefi" => OSPlatform.UEFI,
+                //"uefi" => OSPlatform.UEFI, // TODO: uncomment when OSPlatform.UEFI is supported.
                 _ => throw new ArgumentException(nameof(runtimeIdentifier))
             };
         }

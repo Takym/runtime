@@ -37,7 +37,7 @@ function Get-Help() {
   Write-Host "  -help (-h)                     Print help and exit."
   Write-Host "  -librariesConfiguration (-lc)  Libraries build configuration: Debug or Release."
   Write-Host "                                 [Default: Debug]"
-  Write-Host "  -os                            Target operating system: windows, Linux, OSX, Android or Browser."
+  Write-Host "  -os                            Target operating system: windows, Linux, OSX, Android, Browser or UEFI."
   Write-Host "                                 [Default: Your machine's OS.]"
   Write-Host "  -runtimeConfiguration (-rc)    Runtime build configuration: Debug, Release or Checked."
   Write-Host "                                 Checked is exclusive to the CLR runtime. It is the same as Debug, except code is"
