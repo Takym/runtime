@@ -18,6 +18,7 @@ set "__LinkLibraries= "
 set __PortableBuild=0
 set __IncrementalNativeBuild=0
 set __Ninja=1
+set CLR_CMAKE_TARGET_OS=""
 
 :Arg_Loop
 if [%1] == [] goto :InitVSEnv
@@ -46,6 +47,8 @@ if /i [%1] == [coreclrartifacts]  (set __CoreClrArtifacts=%2&&shift&&shift&goto 
 if /i [%1] == [msbuild] (set __Ninja=0)
 if /i [%1] == [runtimeflavor]  (set __RuntimeFlavor=%2&&shift&&shift&goto Arg_Loop)
 if /i [%1] == [runtimeconfiguration]  (set __RuntimeConfiguration=%2&&shift&&shift&goto Arg_Loop)
+
+if /i [%1] == [uefi]  (set CLR_CMAKE_TARGET_OS=UEFI&&shift&goto Arg_Loop)
 
 shift
 goto :Arg_Loop
@@ -101,6 +104,7 @@ set __ExtraCmakeParams=%__ExtraCmakeParams% "-DCLI_CMAKE_HOST_VER=%__HostVersion
 set __ExtraCmakeParams=%__ExtraCmakeParams% "-DCLI_CMAKE_HOST_POLICY_VER=%__HostPolicyVersion%" "-DCLI_CMAKE_PKG_RID=%cm_BaseRid%" "-DCLI_CMAKE_COMMIT_HASH=%__CommitSha%"
 set __ExtraCmakeParams=%__ExtraCmakeParams% "-DRUNTIME_FLAVOR=%__RuntimeFlavor% "
 set __ExtraCmakeParams=%__ExtraCmakeParams% "-DCLI_CMAKE_RESOURCE_DIR=%__ResourcesDir%" "-DCMAKE_BUILD_TYPE=%CMAKE_BUILD_TYPE%"
+set __ExtraCmakeParams=%__ExtraCmakeParams% "-DCLR_CMAKE_TARGET_OS=%CLR_CMAKE_TARGET_OS%"
 
 :: Regenerate the native build files
 echo Calling "%__engNativeDir%\gen-buildsys.cmd "%__sourceDir%" "%__IntermediatesDir%" %__VSVersion% %__BuildArch% %__ExtraCmakeParams%"
