@@ -30,6 +30,9 @@ if(CLR_CMAKE_TARGET_WIN32)
         ${CMAKE_CURRENT_LIST_DIR}/longfile.windows.cpp)
     list(APPEND HEADERS
         ${CMAKE_CURRENT_LIST_DIR}/longfile.h)
+elseif(CLR_CMAKE_TARGET_UEFI)
+    list(APPEND SOURCES
+        ${CMAKE_CURRENT_LIST_DIR}/pal.uefi.cpp)
 else()
     list(APPEND SOURCES
         ${CMAKE_CURRENT_LIST_DIR}/pal.unix.cpp)
