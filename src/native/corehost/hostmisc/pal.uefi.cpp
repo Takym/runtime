@@ -1,10 +1,68 @@
 #include "pal.h"
+#include <Uefi.h>
+#include <Library/UefiRuntimeServicesTableLib.h>
 
 // UEFI TODO: pal.uefi.cpp
 
+static int daysOf[] = {
+    0,
+    31,
+    31 + 28,
+    31 + 28 + 31,
+    31 + 28 + 31 + 30,
+    31 + 28 + 31 + 30 + 31,
+    31 + 28 + 31 + 30 + 31 + 30,
+    31 + 28 + 31 + 30 + 31 + 30 + 31,
+    31 + 28 + 31 + 30 + 31 + 30 + 31 + 31,
+    31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 30,
+    31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31,
+    31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31 + 30,
+};
+
 pal::string_t pal::get_timestamp()
 {
-    // UEFI TODO: implement a PAL function
+    EFI_TIME   time;
+    EFI_STATUS status = gRT->GetTime(&time, nullptr);
+
+    if (status == EFI_SUCCESS) {
+        UINT8  d      = time.Day;
+        bool   isLeap = ((time.Year % 400) == 0) || ((time.Year % 4 == 0) && ((time.Year % 100) != 0));
+        tm t;
+        t.tm_sec   = time.Second;
+        t.tm_min   = time.Minute;
+        t.tm_hour  = time.Hour;
+        t.tm_mday  = time.Day;
+        t.tm_mon   = time.Month - 1;
+        t.tm_year  = time.Year;
+        t.tm_yday  = time.Day + daysOf[t.tm_mon];
+        t.tm_isdst = time.Daylight;
+        if (!(isLeap && time.Month > 2)) {
+            --t.tm_yday;
+        }
+
+        // Calculate week of day
+        // Reference: https://ja.wikipedia.org/wiki/%E3%83%84%E3%82%A7%E3%83%A9%E3%83%BC%E3%81%AE%E5%85%AC%E5%BC%8F
+        // Reference: https://en.wikipedia.org/wiki/Zeller%27s_congruence
+        int y = time.Year + 1900;
+        int m = time.Month;
+        if (m <= 2) {
+            --y;
+            m += 12;
+        }
+        int C     = y / 100;
+        int Y     = y % 100;
+        int gamma = (5 * C) + (C / 4);
+        t.tm_wday = ((time.Day + ((13 * (m + 1)) / 5) + Y + (Y / 4) + gamma) % 7) + 1;
+        if (t.tm_wday == 7) {
+            t.tm_wday = 0;
+        }
+
+        const std::size_t elems = 100;
+        char_t buf[elems];
+        std::wcsftime(buf, elems, _X("%c GMT"), &t);
+        return pal::string_t(buf);
+    }
+
     return nullptr;
 }
 
