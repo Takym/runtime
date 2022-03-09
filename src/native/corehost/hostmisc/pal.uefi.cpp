@@ -1,4 +1,5 @@
 #include "pal.h"
+#include "trace.h"
 #include <Uefi.h>
 #include <Library/UefiRuntimeServicesTableLib.h>
 
@@ -69,6 +70,8 @@ pal::string_t pal::get_timestamp()
 bool pal::getcwd(string_t* recv)
 {
     // UEFI TODO: implement a PAL function
+
+    trace::error(_X("The PAL function \"getcwd\" is not supported in the UEFI platform."));
     return false;
 }
 
@@ -80,164 +83,228 @@ pal::string_t pal::get_current_os_rid_platform()
 const void* pal::mmap_read(const pal::string_t& path, size_t* length = nullptr)
 {
     // UEFI TODO: implement a PAL function
+
+    trace::error(_X("The PAL function \"mmap_read\" is not supported in the UEFI platform."));
     return nullptr;
 }
 
 void* pal::mmap_copy_on_write(const pal::string_t& path, size_t* length = nullptr)
 {
     // UEFI TODO: implement a PAL function
+
+    trace::error(_X("The PAL function \"mmap_copy_on_write\" is not supported in the UEFI platform."));
     return nullptr;
 }
 
 bool pal::touch_file(const pal::string_t& path)
 {
     // UEFI TODO: implement a PAL function
+
+    trace::error(_X("The PAL function \"touch_file\" is not supported in the UEFI platform."));
     return false;
 }
 
 bool pal::realpath(pal::string_t* path, bool skip_error_logging = false)
 {
     // UEFI TODO: implement a PAL function
+
+    trace::error(_X("The PAL function \"realpath\" is not supported in the UEFI platform."));
     return false;
 }
 
 bool pal::file_exists(const pal::string_t& path)
 {
     // UEFI TODO: implement a PAL function
+
+    trace::error(_X("The PAL function \"file_exists\" is not supported in the UEFI platform."));
     return false;
 }
 
 void pal::readdir(const pal::string_t& path, const pal::string_t& pattern, std::vector<pal::string_t>* list)
 {
     // UEFI TODO: implement a PAL function
+
+    trace::error(_X("The PAL function \"readdir\" is not supported in the UEFI platform."));
 }
 
 void pal::readdir(const pal::string_t& path, std::vector<pal::string_t>* list)
 {
     // UEFI TODO: implement a PAL function
+
+    trace::error(_X("The PAL function \"readdir\" is not supported in the UEFI platform."));
 }
 
 void pal::readdir_onlydirectories(const pal::string_t& path, const pal::string_t& pattern, std::vector<pal::string_t>* list)
 {
     // UEFI TODO: implement a PAL function
+
+    trace::error(_X("The PAL function \"readdir_onlydirectories\" is not supported in the UEFI platform."));
 }
 
 void pal::readdir_onlydirectories(const pal::string_t& path, std::vector<pal::string_t>* list)
 {
     // UEFI TODO: implement a PAL function
+
+    trace::error(_X("The PAL function \"readdir_onlydirectories\" is not supported in the UEFI platform."));
 }
 
 bool pal::get_own_executable_path(pal::string_t* recv)
 {
     // UEFI TODO: implement a PAL function
+
+    trace::error(_X("The PAL function \"get_own_executable_path\" is not supported in the UEFI platform."));
     return false;
 }
 
 bool pal::get_own_module_path(pal::string_t* recv)
 {
     // UEFI TODO: implement a PAL function
+
+    trace::error(_X("The PAL function \"get_own_module_path\" is not supported in the UEFI platform."));
     return false;
 }
 
 bool pal::get_method_module_path(pal::string_t* recv, void* method)
 {
     // UEFI TODO: implement a PAL function
+
+    trace::error(_X("The PAL function \"get_method_module_path\" is not supported in the UEFI platform."));
     return false;
 }
 
 bool pal::get_module_path(dll_t mod, pal::string_t* recv)
 {
     // UEFI TODO: implement a PAL function
+
+    trace::error(_X("The PAL function \"get_module_path\" is not supported in the UEFI platform."));
     return false;
 }
 
 bool pal::get_current_module(dll_t* mod)
 {
     // UEFI TODO: implement a PAL function
+
+    trace::error(_X("The PAL function \"get_current_module\" is not supported in the UEFI platform."));
     return false;
 }
 
 bool pal::getenv(const char_t* name, pal::string_t* recv)
 {
     // UEFI TODO: implement a PAL function
+
+    trace::error(_X("The PAL function \"getenv\" is not supported in the UEFI platform."));
     return false;
 }
 
 bool pal::get_default_servicing_directory(pal::string_t* recv)
 {
     // UEFI TODO: implement a PAL function
+
+    trace::error(_X("The PAL function \"get_default_servicing_directory\" is not supported in the UEFI platform."));
     return false;
 }
 
 bool pal::get_dotnet_self_registered_dir(pal::string_t* recv)
 {
     // UEFI TODO: implement a PAL function
+
+    trace::error(_X("The PAL function \"get_dotnet_self_registered_dir\" is not supported in the UEFI platform."));
     return false;
 }
 
 pal::string_t pal::get_dotnet_self_registered_config_location()
 {
     // UEFI TODO: implement a PAL function
+
+    trace::error(_X("The PAL function \"get_dotnet_self_registered_config_location\" is not supported in the UEFI platform."));
     return nullptr;
 }
 
 bool pal::get_default_installation_dir(pal::string_t* recv)
 {
     // UEFI TODO: implement a PAL function
+
+    trace::error(_X("The PAL function \"get_default_installation_dir\" is not supported in the UEFI platform."));
     return false;
 }
 
 bool pal::get_global_dotnet_dirs(std::vector<pal::string_t>* recv)
 {
     // UEFI TODO: implement a PAL function
+
+    trace::error(_X("The PAL function \"get_global_dotnet_dirs\" is not supported in the UEFI platform."));
     return false;
 }
 
 bool pal::get_default_breadcrumb_store(pal::string_t* recv)
 {
     // UEFI TODO: implement a PAL function
+
+    trace::error(_X("The PAL function \"get_default_breadcrumb_store\" is not supported in the UEFI platform."));
     return false;
 }
 
 bool pal::is_path_rooted(const pal::string_t& path)
 {
     // UEFI TODO: implement a PAL function
+
+    trace::error(_X("The PAL function \"is_path_rooted\" is not supported in the UEFI platform."));
     return false;
 }
 
 bool pal::get_default_bundle_extraction_base_dir(pal::string_t& extraction_dir)
 {
     // UEFI TODO: implement a PAL function
+
+    trace::error(_X("The PAL function \"get_default_bundle_extraction_base_dir\" is not supported in the UEFI platform."));
     return false;
 }
 
 int pal::xtoi(const char_t* input)
 {
-    // UEFI TODO: implement a PAL function
-    return 0;
+    int result = 0;
+    char ch;
+    while ((ch = *input) != '\0') {
+        if ('0' <= ch && ch <= '9') {
+            result *= 10;
+            result += ch - '0';
+        } else if (ch != ' ' && ch != '\t' && ch != '\r' && ch != '\n' && ch != '\v') {
+            break;
+        }
+        ++input;
+    }
+    return result;
 }
 
 bool pal::get_loaded_library(const char_t* library_name, const char* symbol_name, /*out*/ pal::dll_t* dll, /*out*/ pal::string_t* path)
 {
     // UEFI TODO: implement a PAL function
+
+    trace::error(_X("The PAL function \"get_loaded_library\" is not supported in the UEFI platform."));
     return false;
 }
 
 bool pal::load_library(const pal::string_t* path, pal::dll_t* dll)
 {
     // UEFI TODO: implement a PAL function
+
+    trace::error(_X("The PAL function \"load_library\" is not supported in the UEFI platform."));
     return false;
 }
 
 pal::proc_t pal::get_symbol(dll_t library, const char* name)
 {
     // UEFI TODO: implement a PAL function
+
+    trace::error(_X("The PAL function \"get_symbol\" is not supported in the UEFI platform."));
     return nullptr;
 }
 
 void pal::unload_library(pal::dll_t library)
 {
     // UEFI TODO: implement a PAL function
+
+    trace::error(_X("The PAL function \"unload_library\" is not supported in the UEFI platform."));
 }
 
 bool pal::is_running_in_wow64()
@@ -248,5 +315,7 @@ bool pal::is_running_in_wow64()
 bool pal::are_paths_equal_with_normalized_casing(const pal::string_t& path1, const pal::string_t& path2)
 {
     // UEFI TODO: implement a PAL function
+
+    trace::error(_X("The PAL function \"are_paths_equal_with_normalized_casing\" is not supported in the UEFI platform."));
     return false;
 }
