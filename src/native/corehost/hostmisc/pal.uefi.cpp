@@ -1,7 +1,10 @@
+
 #include "pal.h"
 #include "trace.h"
-#include <Uefi.h>
-#include <Library/UefiRuntimeServicesTableLib.h>
+
+// This header file should be included in the last
+// because this redefines TRUE, FALSE, and NULL.
+#include "pal.uefi.h"
 
 // UEFI TODO: pal.uefi.cpp
 
@@ -22,8 +25,8 @@ static int daysOf[] = {
 
 pal::string_t pal::get_timestamp()
 {
-    EFI_TIME   time;
-    EFI_STATUS status = gRT->GetTime(&time, nullptr);
+    uefi::EFI_TIME   time;
+    uefi::EFI_STATUS status = uefi::gRT->GetTime(&time, nullptr);
 
     if (status == EFI_SUCCESS) {
         UINT8  d      = time.Day;
@@ -80,7 +83,7 @@ pal::string_t pal::get_current_os_rid_platform()
     return _X("uefi");
 }
 
-const void* pal::mmap_read(const pal::string_t& path, size_t* length = nullptr)
+const void* pal::mmap_read(const pal::string_t& path, size_t* length)
 {
     // UEFI TODO: implement a PAL function
 
@@ -88,7 +91,7 @@ const void* pal::mmap_read(const pal::string_t& path, size_t* length = nullptr)
     return nullptr;
 }
 
-void* pal::mmap_copy_on_write(const pal::string_t& path, size_t* length = nullptr)
+void* pal::mmap_copy_on_write(const pal::string_t& path, size_t* length)
 {
     // UEFI TODO: implement a PAL function
 
@@ -104,7 +107,7 @@ bool pal::touch_file(const pal::string_t& path)
     return false;
 }
 
-bool pal::realpath(pal::string_t* path, bool skip_error_logging = false)
+bool pal::realpath(pal::string_t* path, bool skip_error_logging)
 {
     // UEFI TODO: implement a PAL function
 
