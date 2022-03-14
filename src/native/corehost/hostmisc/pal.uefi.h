@@ -10,4 +10,5 @@ namespace uefi
         #include <Library/UefiBootServicesTableLib.h>
         #include <Library/UefiRuntimeServicesTableLib.h>
     }
+    #define U(text) ((uefi::CHAR16*)(##text))
 }
