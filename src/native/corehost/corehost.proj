@@ -116,9 +116,20 @@
       Overwrite="true" />
   </Target>
 
+  <Target Name="BuildEdk2LibC"
+          Condition="'$(TargetOS)' == 'uefi'"
+          AfterTargets="Build">
+    <PropertyGroup>
+      <BuildScript>$([MSBuild]::NormalizePath('$(MSBuildThisFileDirectory)', 'hostmisc/edk2-libc/build-edk2-libc.cmd'))</BuildScript>
+    </PropertyGroup>
+
+    <Message Text="&quot;$(BuildScript)&quot;" Importance="High"/>
+    <Exec Command="&quot;$(BuildScript)&quot;" IgnoreStandardErrorWarningFormat="true"/>
+  </Target>
+
   <Target Name="BuildCoreHostUEFI"
           Condition="'$(TargetOS)' == 'uefi'"
-          AfterTargets="Build"
+          AfterTargets="BuildEdk2LibC"
           DependsOnTargets="$(BuildCoreHostDependsOn)">
     <MSBuild
       Projects="$(MSBuildProjectFullPath)"

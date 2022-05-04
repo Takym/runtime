@@ -3739,16 +3739,6 @@
       "#import": [
         "uefi"
       ]
-    },
-    "uefi-arm": {
-      "#import": [
-        "uefi"
-      ]
-    },
-    "uefi-arm64": {
-      "#import": [
-        "uefi"
-      ]
     }
   }
 }
