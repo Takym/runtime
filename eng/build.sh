@@ -29,7 +29,7 @@ usage()
   echo "  --librariesConfiguration (-lc)  Libraries build configuration: Debug or Release."
   echo "                                  [Default: Debug]"
   echo "  --os                            Target operating system: windows, Linux, FreeBSD, OSX, MacCatalyst, tvOS,"
-  echo "                                  tvOSSimulator, iOS, iOSSimulator, Android, Browser, NetBSD, illumos, Solaris or UEFI."
+  echo "                                  tvOSSimulator, iOS, iOSSimulator, Android, Browser, NetBSD, illumos, or Solaris."
   echo "                                  [Default: Your machine's OS.]"
   echo "  --projects <value>              Project or solution file(s) to build."
   echo "  --runtimeConfiguration (-rc)    Runtime build configuration: Debug, Release or Checked."
@@ -281,8 +281,6 @@ while [[ $# > 0 ]]; do
           os="illumos" ;;
         solaris)
           os="Solaris" ;;
-        uefi)
-          os="UEFI" ;;
         *)
           echo "Unsupported target OS '$2'."
           echo "The allowed values are windows, Linux, FreeBSD, OSX, MacCatalyst, tvOS, tvOSSimulator, iOS, iOSSimulator, Android, Browser, illumos and Solaris."
