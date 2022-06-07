@@ -63,9 +63,7 @@ namespace System
             return m_value - (((byte)value).m_value);
         }
 
-        public int CompareTo(byte value)
-        {
-            return m_value - value;
+        public int CompareTo(byte value) => m_value - value;
         }
 
         // Determines whether two Byte objects are equal.
@@ -79,16 +77,10 @@ namespace System
         }
 
         [NonVersionable]
-        public bool Equals(byte obj)
-        {
-            return m_value == obj;
-        }
+        public bool Equals(byte obj) => m_value == obj;
 
         // Gets a hash code for this instance.
-        public override int GetHashCode()
-        {
-            return m_value;
-        }
+        public override int GetHashCode() => m_value;
 
         public static byte Parse(string s)
         {
@@ -148,10 +140,8 @@ namespace System
             return TryParse((ReadOnlySpan<char>)s, NumberStyles.Integer, NumberFormatInfo.CurrentInfo, out result);
         }
 
-        public static bool TryParse(ReadOnlySpan<char> s, out byte result)
-        {
-            return TryParse(s, NumberStyles.Integer, NumberFormatInfo.CurrentInfo, out result);
-        }
+        public static bool TryParse(ReadOnlySpan<char> s, out byte result) =>
+            TryParse(s, NumberStyles.Integer, NumberFormatInfo.CurrentInfo, out result);
 
         public static bool TryParse([NotNullWhen(true)] string? s, NumberStyles style, IFormatProvider? provider, out byte result)
         {
@@ -184,104 +174,52 @@ namespace System
             return true;
         }
 
-        public override string ToString()
-        {
-            return Number.UInt32ToDecStr(m_value);
-        }
+        public override string ToString() =>
+            Number.UInt32ToDecStr(m_value);
 
-        public string ToString([StringSyntax(StringSyntaxAttribute.NumericFormat)] string? format)
-        {
-            return Number.FormatUInt32(m_value, format, null);
-        }
+        public string ToString([StringSyntax(StringSyntaxAttribute.NumericFormat)] string? format) =>
+            Number.FormatUInt32(m_value, format, null);
 
-        public string ToString(IFormatProvider? provider)
-        {
-            return Number.UInt32ToDecStr(m_value);
-        }
+        public string ToString(IFormatProvider? provider) =>
+            Number.UInt32ToDecStr(m_value);
 
-        public string ToString([StringSyntax(StringSyntaxAttribute.NumericFormat)] string? format, IFormatProvider? provider)
-        {
-            return Number.FormatUInt32(m_value, format, provider);
-        }
+        public string ToString([StringSyntax(StringSyntaxAttribute.NumericFormat)] string? format, IFormatProvider? provider) =>
+            Number.FormatUInt32(m_value, format, provider);
 
-        public bool TryFormat(Span<char> destination, out int charsWritten, [StringSyntax(StringSyntaxAttribute.NumericFormat)] ReadOnlySpan<char> format = default, IFormatProvider? provider = null)
-        {
-            return Number.TryFormatUInt32(m_value, format, provider, destination, out charsWritten);
-        }
+        public bool TryFormat(Span<char> destination, out int charsWritten, [StringSyntax(StringSyntaxAttribute.NumericFormat)] ReadOnlySpan<char> format = default, IFormatProvider? provider = null) =>
+            Number.TryFormatUInt32(m_value, format, provider, destination, out charsWritten);
 
         //
         // IConvertible
         //
 
-        public TypeCode GetTypeCode()
-        {
-            return TypeCode.Byte;
-        }
+        public TypeCode GetTypeCode() => TypeCode.Byte;
 
-        bool IConvertible.ToBoolean(IFormatProvider? provider)
-        {
-            return Convert.ToBoolean(m_value);
-        }
+        bool IConvertible.ToBoolean(IFormatProvider? provider) => Convert.ToBoolean(m_value);
 
-        char IConvertible.ToChar(IFormatProvider? provider)
-        {
-            return Convert.ToChar(m_value);
-        }
+        char IConvertible.ToChar(IFormatProvider? provider) => Convert.ToChar(m_value);
 
-        sbyte IConvertible.ToSByte(IFormatProvider? provider)
-        {
-            return Convert.ToSByte(m_value);
-        }
+        sbyte IConvertible.ToSByte(IFormatProvider? provider) => Convert.ToSByte(m_value);
 
-        byte IConvertible.ToByte(IFormatProvider? provider)
-        {
-            return m_value;
-        }
+        byte IConvertible.ToByte(IFormatProvider? provider) => m_value;
 
-        short IConvertible.ToInt16(IFormatProvider? provider)
-        {
-            return Convert.ToInt16(m_value);
-        }
+        short IConvertible.ToInt16(IFormatProvider? provider) => Convert.ToInt16(m_value);
 
-        ushort IConvertible.ToUInt16(IFormatProvider? provider)
-        {
-            return Convert.ToUInt16(m_value);
-        }
+        ushort IConvertible.ToUInt16(IFormatProvider? provider) => Convert.ToUInt16(m_value);
 
-        int IConvertible.ToInt32(IFormatProvider? provider)
-        {
-            return Convert.ToInt32(m_value);
-        }
+        int IConvertible.ToInt32(IFormatProvider? provider) => Convert.ToInt32(m_value);
 
-        uint IConvertible.ToUInt32(IFormatProvider? provider)
-        {
-            return Convert.ToUInt32(m_value);
-        }
+        uint IConvertible.ToUInt32(IFormatProvider? provider) => Convert.ToUInt32(m_value);
 
-        long IConvertible.ToInt64(IFormatProvider? provider)
-        {
-            return Convert.ToInt64(m_value);
-        }
+        long IConvertible.ToInt64(IFormatProvider? provider) => Convert.ToInt64(m_value);
 
-        ulong IConvertible.ToUInt64(IFormatProvider? provider)
-        {
-            return Convert.ToUInt64(m_value);
-        }
+        ulong IConvertible.ToUInt64(IFormatProvider? provider) => Convert.ToUInt64(m_value);
 
-        float IConvertible.ToSingle(IFormatProvider? provider)
-        {
-            return Convert.ToSingle(m_value);
-        }
+        float IConvertible.ToSingle(IFormatProvider? provider) => Convert.ToSingle(m_value);
 
-        double IConvertible.ToDouble(IFormatProvider? provider)
-        {
-            return Convert.ToDouble(m_value);
-        }
+        double IConvertible.ToDouble(IFormatProvider? provider) => Convert.ToDouble(m_value);
 
-        decimal IConvertible.ToDecimal(IFormatProvider? provider)
-        {
-            return Convert.ToDecimal(m_value);
-        }
+        decimal IConvertible.ToDecimal(IFormatProvider? provider) => Convert.ToDecimal(m_value);
 
         DateTime IConvertible.ToDateTime(IFormatProvider? provider)
         {
@@ -289,9 +227,7 @@ namespace System
         }
 
         object IConvertible.ToType(Type type, IFormatProvider? provider)
-        {
-            return Convert.DefaultToType((IConvertible)this, type, provider);
-        }
+            => Convert.DefaultToType((IConvertible)this, type, provider);
 
         //
         // IAdditionOperators
