@@ -56,17 +56,11 @@ namespace System.Numerics
 
         /// <summary>Gets a quaternion that represents a zero.</summary>
         /// <value>A quaternion whose values are <c>(0, 0, 0, 0)</c>.</value>
-        public static Quaternion Zero
-        {
-            get => default;
-        }
+        public static Quaternion Zero => default;
 
         /// <summary>Gets a quaternion that represents no rotation.</summary>
         /// <value>A quaternion whose values are <c>(0, 0, 0, 1)</c>.</value>
-        public static Quaternion Identity
-        {
-            get => new Quaternion(0, 0, 0, 1);
-        }
+        public static Quaternion Identity => new Quaternion(0, 0, 0, 1);
 
         public float this[int index]
         {
@@ -125,10 +119,7 @@ namespace System.Numerics
         /// <summary>Gets a value that indicates whether the current instance is the identity quaternion.</summary>
         /// <value><see langword="true" /> if the current instance is the identity quaternion; otherwise, <see langword="false" />.</value>
         /// <altmember cref="System.Numerics.Quaternion.Identity"/>
-        public readonly bool IsIdentity
-        {
-            get => this == Identity;
-        }
+        public readonly bool IsIdentity => this == Identity;
 
         /// <summary>Adds each element in one quaternion with its corresponding element in a second quaternion.</summary>
         /// <param name="value1">The first quaternion.</param>
@@ -196,22 +187,18 @@ namespace System.Numerics
         /// <returns><see langword="true" /> if the two quaternions are equal; otherwise, <see langword="false" />.</returns>
         /// <remarks>Two quaternions are equal if each of their corresponding components is equal.
         /// The <see cref="System.Numerics.Quaternion.op_Equality" /> method defines the operation of the equality operator for <see cref="System.Numerics.Quaternion" /> objects.</remarks>
-        public static bool operator ==(Quaternion value1, Quaternion value2)
-        {
-            return (value1.X == value2.X)
-                && (value1.Y == value2.Y)
-                && (value1.Z == value2.Z)
-                && (value1.W == value2.W);
-        }
+        public static bool operator ==(Quaternion value1, Quaternion value2) =>
+            (value1.X == value2.X) &&
+            (value1.Y == value2.Y) &&
+            (value1.Z == value2.Z) &&
+            (value1.W == value2.W);
 
         /// <summary>Returns a value that indicates whether two quaternions are not equal.</summary>
         /// <param name="value1">The first quaternion to compare.</param>
         /// <param name="value2">The second quaternion to compare.</param>
         /// <returns><see langword="true" /> if <paramref name="value1" /> and <paramref name="value2" /> are not equal; otherwise, <see langword="false" />.</returns>
-        public static bool operator !=(Quaternion value1, Quaternion value2)
-        {
-            return !(value1 == value2);
-        }
+        public static bool operator !=(Quaternion value1, Quaternion value2) =>
+            !(value1 == value2);
 
         /// <summary>Returns the quaternion that results from multiplying two quaternions together.</summary>
         /// <param name="value1">The first quaternion.</param>
@@ -302,10 +289,8 @@ namespace System.Numerics
         /// <param name="value2">The second quaternion.</param>
         /// <returns>The quaternion that contains the summed values of <paramref name="value1" /> and <paramref name="value2" />.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Quaternion Add(Quaternion value1, Quaternion value2)
-        {
-            return value1 + value2;
-        }
+        public static Quaternion Add(Quaternion value1, Quaternion value2) =>
+            value1 + value2;
 
         /// <summary>Concatenates two quaternions.</summary>
         /// <param name="value1">The first quaternion rotation in the series.</param>
@@ -468,22 +453,18 @@ namespace System.Numerics
         /// <param name="value2">The divisor.</param>
         /// <returns>The quaternion that results from dividing <paramref name="value1" /> by <paramref name="value2" />.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Quaternion Divide(Quaternion value1, Quaternion value2)
-        {
-            return value1 / value2;
-        }
+        public static Quaternion Divide(Quaternion value1, Quaternion value2) =>
+            value1 / value2;
 
         /// <summary>Calculates the dot product of two quaternions.</summary>
         /// <param name="quaternion1">The first quaternion.</param>
         /// <param name="quaternion2">The second quaternion.</param>
         /// <returns>The dot product.</returns>
-        public static float Dot(Quaternion quaternion1, Quaternion quaternion2)
-        {
-            return quaternion1.X * quaternion2.X +
-                   quaternion1.Y * quaternion2.Y +
-                   quaternion1.Z * quaternion2.Z +
-                   quaternion1.W * quaternion2.W;
-        }
+        public static float Dot(Quaternion quaternion1, Quaternion quaternion2) =>
+            quaternion1.X * quaternion2.X +
+            quaternion1.Y * quaternion2.Y +
+            quaternion1.Z * quaternion2.Z +
+            quaternion1.W * quaternion2.W;
 
         /// <summary>Returns the inverse of a quaternion.</summary>
         /// <param name="value">The quaternion.</param>
@@ -554,29 +535,23 @@ namespace System.Numerics
         /// <param name="value2">The second quaternion.</param>
         /// <returns>The product quaternion.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Quaternion Multiply(Quaternion value1, Quaternion value2)
-        {
-            return value1 * value2;
-        }
+        public static Quaternion Multiply(Quaternion value1, Quaternion value2) =>
+            value1 * value2;
 
         /// <summary>Returns the quaternion that results from scaling all the components of a specified quaternion by a scalar factor.</summary>
         /// <param name="value1">The source quaternion.</param>
         /// <param name="value2">The scalar value.</param>
         /// <returns>The scaled quaternion.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Quaternion Multiply(Quaternion value1, float value2)
-        {
-            return value1 * value2;
-        }
+        public static Quaternion Multiply(Quaternion value1, float value2) =>
+            value1 * value2;
 
         /// <summary>Reverses the sign of each component of the quaternion.</summary>
         /// <param name="value">The quaternion to negate.</param>
         /// <returns>The negated quaternion.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Quaternion Negate(Quaternion value)
-        {
-            return -value;
-        }
+        public static Quaternion Negate(Quaternion value) =>
+            -value;
 
         /// <summary>Divides each component of a specified <see cref="System.Numerics.Quaternion" /> by its length.</summary>
         /// <param name="value">The quaternion to normalize.</param>
@@ -651,19 +626,15 @@ namespace System.Numerics
         /// <param name="value2">The second quaternion.</param>
         /// <returns>The quaternion containing the values that result from subtracting each element in <paramref name="value2" /> from its corresponding element in <paramref name="value1" />.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Quaternion Subtract(Quaternion value1, Quaternion value2)
-        {
-            return value1 - value2;
-        }
+        public static Quaternion Subtract(Quaternion value1, Quaternion value2) =>
+            value1 - value2;
 
         /// <summary>Returns a value that indicates whether this instance and a specified object are equal.</summary>
         /// <param name="obj">The object to compare with the current instance.</param>
         /// <returns><see langword="true" /> if the current instance and <paramref name="obj" /> are equal; otherwise, <see langword="false" />. If <paramref name="obj" /> is <see langword="null" />, the method returns <see langword="false" />.</returns>
         /// <remarks>The current instance and <paramref name="obj" /> are equal if <paramref name="obj" /> is a <see cref="System.Numerics.Quaternion" /> object and the corresponding components of each matrix are equal.</remarks>
-        public override readonly bool Equals([NotNullWhen(true)] object? obj)
-        {
-            return (obj is Quaternion other) && Equals(other);
-        }
+        public override readonly bool Equals([NotNullWhen(true)] object? obj) =>
+            (obj is Quaternion other) && Equals(other);
 
         /// <summary>Returns a value that indicates whether this instance and another quaternion are equal.</summary>
         /// <param name="other">The other quaternion.</param>
@@ -693,25 +664,18 @@ namespace System.Numerics
 
         /// <summary>Returns the hash code for this instance.</summary>
         /// <returns>The hash code.</returns>
-        public override readonly int GetHashCode()
-        {
-            return HashCode.Combine(X, Y, Z, W);
-        }
+        public override readonly int GetHashCode() =>
+            HashCode.Combine(X, Y, Z, W);
 
         /// <summary>Calculates the length of the quaternion.</summary>
         /// <returns>The computed length of the quaternion.</returns>
-        public readonly float Length()
-        {
-            float lengthSquared = LengthSquared();
-            return MathF.Sqrt(lengthSquared);
-        }
+        public readonly float Length() =>
+            MathF.Sqrt(LengthSquared());
 
         /// <summary>Calculates the squared length of the quaternion.</summary>
         /// <returns>The length squared of the quaternion.</returns>
-        public readonly float LengthSquared()
-        {
-            return X * X + Y * Y + Z * Z + W * W;
-        }
+        public readonly float LengthSquared() =>
+            X * X + Y * Y + Z * Z + W * W;
 
         /// <summary>Returns a string that represents this quaternion.</summary>
         /// <returns>The string representation of this quaternion.</returns>
