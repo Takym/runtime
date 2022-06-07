@@ -50,10 +50,7 @@ namespace System.Runtime.Serialization
             }
         }
 
-        private static bool IsReflectionBackupAllowed()
-        {
-            return true;
-        }
+        private static bool IsReflectionBackupAllowed() => true;
 
         public DataContractSerializer(Type type)
             : this(type, (IEnumerable<Type>?)null)
@@ -187,36 +184,21 @@ namespace System.Runtime.Serialization
             }
         }
 
-        public int MaxItemsInObjectGraph
-        {
-            get { return _maxItemsInObjectGraph; }
-        }
+        public int MaxItemsInObjectGraph => _maxItemsInObjectGraph;
 
         internal ISerializationSurrogateProvider? SerializationSurrogateProvider
         {
-            get { return _serializationSurrogateProvider; }
-            set { _serializationSurrogateProvider = value; }
+            get => _serializationSurrogateProvider;
+            set => _serializationSurrogateProvider = value;
         }
 
-        public bool PreserveObjectReferences
-        {
-            get { return _preserveObjectReferences; }
-        }
+        public bool PreserveObjectReferences => _preserveObjectReferences;
 
-        public bool IgnoreExtensionDataObject
-        {
-            get { return _ignoreExtensionDataObject; }
-        }
+        public bool IgnoreExtensionDataObject => _ignoreExtensionDataObject;
 
-        public DataContractResolver? DataContractResolver
-        {
-            get { return _dataContractResolver; }
-        }
+        public DataContractResolver? DataContractResolver => _dataContractResolver;
 
-        public bool SerializeReadOnlyTypes
-        {
-            get { return _serializeReadOnlyTypes; }
-        }
+        public bool SerializeReadOnlyTypes => _serializeReadOnlyTypes;
 
         private DataContract RootContract
         {
@@ -295,40 +277,28 @@ namespace System.Runtime.Serialization
         }
 
         [RequiresUnreferencedCode(DataContract.SerializerTrimmerWarning)]
-        public override object? ReadObject(XmlReader reader)
-        {
-            return ReadObjectHandleExceptions(new XmlReaderDelegator(reader), true /*verifyObjectName*/);
-        }
+        public override object? ReadObject(XmlReader reader) =>
+            ReadObjectHandleExceptions(new XmlReaderDelegator(reader), true /*verifyObjectName*/);
 
         [RequiresUnreferencedCode(DataContract.SerializerTrimmerWarning)]
-        public override object? ReadObject(XmlReader reader, bool verifyObjectName)
-        {
-            return ReadObjectHandleExceptions(new XmlReaderDelegator(reader), verifyObjectName);
-        }
+        public override object? ReadObject(XmlReader reader, bool verifyObjectName) =>
+            ReadObjectHandleExceptions(new XmlReaderDelegator(reader), verifyObjectName);
 
         [RequiresUnreferencedCode(DataContract.SerializerTrimmerWarning)]
-        public override bool IsStartObject(XmlReader reader)
-        {
-            return IsStartObjectHandleExceptions(new XmlReaderDelegator(reader));
-        }
+        public override bool IsStartObject(XmlReader reader) =>
+            IsStartObjectHandleExceptions(new XmlReaderDelegator(reader));
 
         [RequiresUnreferencedCode(DataContract.SerializerTrimmerWarning)]
-        public override object? ReadObject(XmlDictionaryReader reader, bool verifyObjectName)
-        {
-            return ReadObjectHandleExceptions(new XmlReaderDelegator(reader), verifyObjectName);
-        }
+        public override object? ReadObject(XmlDictionaryReader reader, bool verifyObjectName) =>
+            ReadObjectHandleExceptions(new XmlReaderDelegator(reader), verifyObjectName);
 
         [RequiresUnreferencedCode(DataContract.SerializerTrimmerWarning)]
-        public override bool IsStartObject(XmlDictionaryReader reader)
-        {
-            return IsStartObjectHandleExceptions(new XmlReaderDelegator(reader));
-        }
+        public override bool IsStartObject(XmlDictionaryReader reader) =>
+            IsStartObjectHandleExceptions(new XmlReaderDelegator(reader));
 
         [RequiresUnreferencedCode(DataContract.SerializerTrimmerWarning)]
-        public object? ReadObject(XmlDictionaryReader reader, bool verifyObjectName, DataContractResolver? dataContractResolver)
-        {
-            return ReadObjectHandleExceptions(new XmlReaderDelegator(reader), verifyObjectName, dataContractResolver);
-        }
+        public object? ReadObject(XmlDictionaryReader reader, bool verifyObjectName, DataContractResolver? dataContractResolver) =>
+            ReadObjectHandleExceptions(new XmlReaderDelegator(reader), verifyObjectName, dataContractResolver);
 
         [RequiresUnreferencedCode(DataContract.SerializerTrimmerWarning)]
         internal override void InternalWriteStartObject(XmlWriterDelegator writer, object? graph)
@@ -426,10 +396,8 @@ namespace System.Runtime.Serialization
         }
 
         [RequiresUnreferencedCode(DataContract.SerializerTrimmerWarning)]
-        internal override object? InternalReadObject(XmlReaderDelegator xmlReader, bool verifyObjectName)
-        {
-            return InternalReadObject(xmlReader, verifyObjectName, null);
-        }
+        internal override object? InternalReadObject(XmlReaderDelegator xmlReader, bool verifyObjectName) =>
+            InternalReadObject(xmlReader, verifyObjectName, null);
 
         [RequiresUnreferencedCode(DataContract.SerializerTrimmerWarning)]
         internal override object? InternalReadObject(XmlReaderDelegator xmlReader, bool verifyObjectName, DataContractResolver? dataContractResolver)
@@ -509,9 +477,7 @@ namespace System.Runtime.Serialization
         }
 
         [RequiresUnreferencedCode(DataContract.SerializerTrimmerWarning)]
-        internal static Type GetSurrogatedType(ISerializationSurrogateProvider serializationSurrogateProvider, Type type)
-        {
-            return DataContractSurrogateCaller.GetDataContractType(serializationSurrogateProvider, DataContract.UnwrapNullableType(type));
-        }
+        internal static Type GetSurrogatedType(ISerializationSurrogateProvider serializationSurrogateProvider, Type type) =>
+            DataContractSurrogateCaller.GetDataContractType(serializationSurrogateProvider, DataContract.UnwrapNullableType(type));
     }
 }
