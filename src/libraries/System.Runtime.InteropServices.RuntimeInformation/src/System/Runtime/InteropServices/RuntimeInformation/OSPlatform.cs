@@ -15,6 +15,8 @@ namespace System.Runtime.InteropServices
 
         public static OSPlatform Windows { get; } = new OSPlatform("WINDOWS");
 
+        public static OSPlatform UEFI { get; } = new OSPlatform("UEFI");
+
         internal string Name { get; }
 
         private OSPlatform(string osPlatform)

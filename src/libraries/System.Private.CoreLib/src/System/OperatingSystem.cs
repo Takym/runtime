@@ -71,6 +71,7 @@ namespace System
                         case PlatformID.Xbox: os = "Xbox "; break;
                         case PlatformID.MacOSX: os = "Mac OS X "; break;
                         case PlatformID.Other: os = "Other "; break;
+                        case PlatformID.UEFI: os = "UEFI "; break;
                         default:
                             Debug.Fail($"Unknown platform {_platform}");
                             os = "<unknown> "; break;
@@ -109,6 +110,8 @@ namespace System
             return platform.Equals("IOS", StringComparison.OrdinalIgnoreCase);
 #elif TARGET_UNIX
             return platform.Equals(s_osPlatformName, StringComparison.OrdinalIgnoreCase);
+#elif TARGET_UEFI
+            return platform.Equals("UEFI", StringComparison.OrdinalIgnoreCase);
 #else
 #error Unknown OS
 #endif
@@ -281,6 +284,16 @@ namespace System
         /// </summary>
         public static bool IsWindowsVersionAtLeast(int major, int minor = 0, int build = 0, int revision = 0)
             => IsWindows() && IsOSVersionAtLeast(major, minor, build, revision);
+
+        /// <summary>
+        /// Indicates whether the current application is running on UEFI.
+        /// </summary>
+        public static bool IsUEFI() =>
+#if TARGET_UEFI
+            true;
+#else
+            false;
+#endif
 
         private static bool IsOSVersionAtLeast(int major, int minor, int build, int revision)
         {

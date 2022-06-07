@@ -5014,6 +5014,7 @@ namespace System
         public static bool IsWatchOSVersionAtLeast(int major, int minor = 0, int build = 0) { throw null; }
         public static bool IsWindows() { throw null; }
         public static bool IsWindowsVersionAtLeast(int major, int minor = 0, int build = 0, int revision = 0) { throw null; }
+        public static bool IsUEFI() { throw null; }
     }
     public partial class OperationCanceledException : System.SystemException
     {
@@ -5060,6 +5061,7 @@ namespace System
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         MacOSX = 6,
         Other = 7,
+        UEFI = 8,
     }
     public partial class PlatformNotSupportedException : System.NotSupportedException
     {

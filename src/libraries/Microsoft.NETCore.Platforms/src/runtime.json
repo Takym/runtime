@@ -3724,6 +3724,21 @@
         "win81",
         "win8-x86-aot"
       ]
+    },
+    "uefi": {
+      "#import": [
+        "any"
+      ]
+    },
+    "uefi-x86": {
+      "#import": [
+        "uefi"
+      ]
+    },
+    "uefi-x64": {
+      "#import": [
+        "uefi"
+      ]
     }
   }
 }

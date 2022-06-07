@@ -196,6 +196,12 @@ if(CLR_CMAKE_HOST_OS STREQUAL Emscripten)
     set(CLR_CMAKE_HOST_BROWSER 1)
 endif(CLR_CMAKE_HOST_OS STREQUAL Emscripten)
 
+if(CLR_CMAKE_HOST_OS STREQUAL UEFI)
+    # Maybe, a UEFI as a host OS would not be used.
+    # I do not have an idea for situations building on UEFI.
+    set(CLR_CMAKE_HOST_UEFI 1)
+endif(CLR_CMAKE_HOST_OS STREQUAL UEFI)
+
 #--------------------------------------------
 # This repo builds two set of binaries
 # 1. binaries which execute on target arch machine
@@ -377,9 +383,18 @@ if(CLR_CMAKE_TARGET_UNIX)
     else()
         clr_unknown_arch()
     endif()
+elseif(CLR_CMAKE_TARGET_OS STREQUAL UEFI)
+    set(CLR_CMAKE_TARGET_UEFI 1)
+    if(CLR_CMAKE_TARGET_ARCH STREQUAL x64)
+        set(CLR_CMAKE_TARGET_UEFI_AMD64 1)
+    elseif(CLR_CMAKE_TARGET_ARCH STREQUAL x86)
+        set(CLR_CMAKE_TARGET_UEFI_X86 1)
+    else()
+        clr_unknown_arch()
+    endif()
 else()
     set(CLR_CMAKE_TARGET_WIN32 1)
-endif(CLR_CMAKE_TARGET_UNIX)
+endif()
 
 # check if host & target os/arch combination are valid
 if (CLR_CMAKE_TARGET_OS STREQUAL CLR_CMAKE_HOST_OS)
@@ -392,7 +407,7 @@ else()
     if(NOT (CLR_CMAKE_HOST_OS STREQUAL windows))
         message(FATAL_ERROR "Invalid host and target os/arch combination. Host OS: ${CLR_CMAKE_HOST_OS}")
     endif()
-    if(NOT (CLR_CMAKE_TARGET_LINUX OR CLR_CMAKE_TARGET_ALPINE_LINUX))
+    if(NOT (CLR_CMAKE_TARGET_LINUX OR CLR_CMAKE_TARGET_ALPINE_LINUX OR CLR_CMAKE_TARGET_UEFI))
         message(FATAL_ERROR "Invalid host and target os/arch combination. Target OS: ${CLR_CMAKE_TARGET_OS}")
     endif()
     if(NOT ((CLR_CMAKE_HOST_ARCH_AMD64 AND (CLR_CMAKE_TARGET_ARCH_AMD64 OR CLR_CMAKE_TARGET_ARCH_ARM64)) OR (CLR_CMAKE_HOST_ARCH_I386 AND CLR_CMAKE_TARGET_ARCH_ARM)))

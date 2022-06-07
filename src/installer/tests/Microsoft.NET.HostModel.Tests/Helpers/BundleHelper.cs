@@ -129,6 +129,7 @@ namespace BundleTests.Helpers
                 "win" => OSPlatform.Windows,
                 "osx" => OSPlatform.OSX,
                 "linux" => OSPlatform.Linux,
+                //"uefi" => OSPlatform.UEFI, // TODO: uncomment when OSPlatform.UEFI is supported.
                 _ => throw new ArgumentException(nameof(runtimeIdentifier))
             };
         }
@@ -181,7 +182,7 @@ namespace BundleTests.Helpers
         // Bundle to a single-file
         // In several tests, the single-file bundle is created explicitly using Bundle API
         // instead of the SDK via /p:PublishSingleFile=true.
-        // This is necessary when the test needs the latest changes in the AppHost, 
+        // This is necessary when the test needs the latest changes in the AppHost,
         // which may not (yet) be available in the SDK.
         public static Bundler BundleApp(TestProjectFixture fixture,
                                         out string singleFile,

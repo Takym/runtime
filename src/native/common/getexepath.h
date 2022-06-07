@@ -59,6 +59,8 @@ extern inline char* getexepath(void)
     }
 
     return realpath(path, NULL);
+#elif defined(UEFI)
+    return NULL; // UEFI TODO: getexepath for UEFI
 #else
 #if HAVE_GETAUXVAL && defined(AT_EXECFN)
     const char* path = (const char *)getauxval(AT_EXECFN);

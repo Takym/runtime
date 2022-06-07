@@ -23,6 +23,7 @@ namespace System.Runtime.InteropServices
         public static System.Runtime.InteropServices.OSPlatform Linux { get { throw null; } }
         public static System.Runtime.InteropServices.OSPlatform OSX { get { throw null; } }
         public static System.Runtime.InteropServices.OSPlatform Windows { get { throw null; } }
+        public static System.Runtime.InteropServices.OSPlatform UEFI { get { throw null; } }
         public static System.Runtime.InteropServices.OSPlatform Create(string osPlatform) { throw null; }
         public override bool Equals([System.Diagnostics.CodeAnalysis.NotNullWhenAttribute(true)] object? obj) { throw null; }
         public bool Equals(System.Runtime.InteropServices.OSPlatform other) { throw null; }

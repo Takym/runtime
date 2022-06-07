@@ -30,6 +30,14 @@
         <SymbolsSuffix>.debug</SymbolsSuffix>
       </PropertyGroup>
     </When>
+    <When Condition="$(PackageRID.StartsWith('uefi'))">
+      <PropertyGroup>
+        <ExeSuffix>.efi</ExeSuffix>
+        <LibSuffix>.dll</LibSuffix>
+        <StaticLibSuffix>.lib</StaticLibSuffix>
+        <SymbolsSuffix>.pdb</SymbolsSuffix>
+      </PropertyGroup>
+    </When>
     <Otherwise>
       <PropertyGroup>
         <LibPrefix Condition=" '$(SkipLibraryPrefixFromUnix)' == '' ">lib</LibPrefix>

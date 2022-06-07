@@ -8767,5 +8767,22 @@
     "aot",
     "any",
     "base"
+  ],
+  "uefi": [
+    "uefi",
+    "any",
+    "base"
+  ],
+  "uefi-x86": [
+    "uefi-x86",
+    "uefi",
+    "any",
+    "base"
+  ],
+  "uefi-x64": [
+    "uefi-x64",
+    "uefi",
+    "any",
+    "base"
   ]
 }
