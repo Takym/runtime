@@ -657,85 +657,53 @@ namespace System.Numerics
             get { AssertValid(); return (_sign >> (kcbitUint - 1)) - (-_sign >> (kcbitUint - 1)); }
         }
 
-        public static BigInteger Parse(string value)
-        {
-            return Parse(value, NumberStyles.Integer);
-        }
+        public static BigInteger Parse(string value) =>
+            Parse(value, NumberStyles.Integer);
 
-        public static BigInteger Parse(string value, NumberStyles style)
-        {
-            return Parse(value, style, NumberFormatInfo.CurrentInfo);
-        }
+        public static BigInteger Parse(string value, NumberStyles style) =>
+            Parse(value, style, NumberFormatInfo.CurrentInfo);
 
-        public static BigInteger Parse(string value, IFormatProvider? provider)
-        {
-            return Parse(value, NumberStyles.Integer, NumberFormatInfo.GetInstance(provider));
-        }
+        public static BigInteger Parse(string value, IFormatProvider? provider) =>
+            Parse(value, NumberStyles.Integer, NumberFormatInfo.GetInstance(provider));
 
-        public static BigInteger Parse(string value, NumberStyles style, IFormatProvider? provider)
-        {
-            return BigNumber.ParseBigInteger(value, style, NumberFormatInfo.GetInstance(provider));
-        }
+        public static BigInteger Parse(string value, NumberStyles style, IFormatProvider? provider) =>
+            BigNumber.ParseBigInteger(value, style, NumberFormatInfo.GetInstance(provider));
 
-        public static bool TryParse([NotNullWhen(true)] string? value, out BigInteger result)
-        {
-            return TryParse(value, NumberStyles.Integer, NumberFormatInfo.CurrentInfo, out result);
-        }
+        public static bool TryParse([NotNullWhen(true)] string? value, out BigInteger result) =>
+            TryParse(value, NumberStyles.Integer, NumberFormatInfo.CurrentInfo, out result);
 
-        public static bool TryParse([NotNullWhen(true)] string? value, NumberStyles style, IFormatProvider? provider, out BigInteger result)
-        {
-            return BigNumber.TryParseBigInteger(value, style, NumberFormatInfo.GetInstance(provider), out result);
-        }
+        public static bool TryParse([NotNullWhen(true)] string? value, NumberStyles style, IFormatProvider? provider, out BigInteger result) =>
+            BigNumber.TryParseBigInteger(value, style, NumberFormatInfo.GetInstance(provider), out result);
 
-        public static BigInteger Parse(ReadOnlySpan<char> value, NumberStyles style = NumberStyles.Integer, IFormatProvider? provider = null)
-        {
-            return BigNumber.ParseBigInteger(value, style, NumberFormatInfo.GetInstance(provider));
-        }
+        public static BigInteger Parse(ReadOnlySpan<char> value, NumberStyles style = NumberStyles.Integer, IFormatProvider? provider = null) =>
+            BigNumber.ParseBigInteger(value, style, NumberFormatInfo.GetInstance(provider));
 
-        public static bool TryParse(ReadOnlySpan<char> value, out BigInteger result)
-        {
-            return TryParse(value, NumberStyles.Integer, NumberFormatInfo.CurrentInfo, out result);
-        }
+        public static bool TryParse(ReadOnlySpan<char> value, out BigInteger result) =>
+            TryParse(value, NumberStyles.Integer, NumberFormatInfo.CurrentInfo, out result);
 
-        public static bool TryParse(ReadOnlySpan<char> value, NumberStyles style, IFormatProvider? provider, out BigInteger result)
-        {
-            return BigNumber.TryParseBigInteger(value, style, NumberFormatInfo.GetInstance(provider), out result);
-        }
+        public static bool TryParse(ReadOnlySpan<char> value, NumberStyles style, IFormatProvider? provider, out BigInteger result) =>
+            BigNumber.TryParseBigInteger(value, style, NumberFormatInfo.GetInstance(provider), out result);
 
-        public static int Compare(BigInteger left, BigInteger right)
-        {
-            return left.CompareTo(right);
-        }
+        public static int Compare(BigInteger left, BigInteger right) =>
+            left.CompareTo(right);
 
-        public static BigInteger Abs(BigInteger value)
-        {
-            return (value >= Zero) ? value : -value;
-        }
+        public static BigInteger Abs(BigInteger value) =>
+            (value >= Zero) ? value : -value;
 
-        public static BigInteger Add(BigInteger left, BigInteger right)
-        {
-            return left + right;
-        }
+        public static BigInteger Add(BigInteger left, BigInteger right) =>
+            left + right;
 
-        public static BigInteger Subtract(BigInteger left, BigInteger right)
-        {
-            return left - right;
-        }
+        public static BigInteger Subtract(BigInteger left, BigInteger right) =>
+            left - right;
 
-        public static BigInteger Multiply(BigInteger left, BigInteger right)
-        {
-            return left * right;
-        }
+        public static BigInteger Multiply(BigInteger left, BigInteger right) =>
+            left * right;
 
-        public static BigInteger Divide(BigInteger dividend, BigInteger divisor)
-        {
-            return dividend / divisor;
-        }
+        public static BigInteger Divide(BigInteger dividend, BigInteger divisor) =>
+            dividend / divisor;
 
-        public static BigInteger Remainder(BigInteger dividend, BigInteger divisor)
-        {
-            return dividend % divisor;
-        }
+        public static BigInteger Remainder(BigInteger dividend, BigInteger divisor) =>
+            dividend % divisor;
 
         public static BigInteger DivRem(BigInteger dividend, BigInteger divisor, out BigInteger remainder)
         {
@@ -823,15 +791,11 @@ namespace System.Numerics
             }
         }
 
-        public static BigInteger Negate(BigInteger value)
-        {
-            return -value;
-        }
+        public static BigInteger Negate(BigInteger value) =>
+            -value;
 
-        public static double Log(BigInteger value)
-        {
-            return Log(value, Math.E);
-        }
+        public static double Log(BigInteger value) =>
+            Log(value, Math.E);
 
         public static double Log(BigInteger value, double baseValue)
         {
@@ -860,10 +824,8 @@ namespace System.Numerics
             return Math.Log(x, baseValue) + (b - 64) / Math.Log(baseValue, 2);
         }
 
-        public static double Log10(BigInteger value)
-        {
-            return Log(value, 10);
-        }
+        public static double Log10(BigInteger value) =>
+            Log(value, 10);
 
         public static BigInteger GreatestCommonDivisor(BigInteger left, BigInteger right)
         {
@@ -948,19 +910,11 @@ namespace System.Numerics
             return result;
         }
 
-        public static BigInteger Max(BigInteger left, BigInteger right)
-        {
-            if (left.CompareTo(right) < 0)
-                return right;
-            return left;
-        }
+        public static BigInteger Max(BigInteger left, BigInteger right) =>
+            left.CompareTo(right) < 0 ? right : left;
 
-        public static BigInteger Min(BigInteger left, BigInteger right)
-        {
-            if (left.CompareTo(right) <= 0)
-                return left;
-            return right;
-        }
+        public static BigInteger Min(BigInteger left, BigInteger right) =>
+            left.CompareTo(right) <= 0 ? left : right;
 
         public static BigInteger ModPow(BigInteger value, BigInteger exponent, BigInteger modulus)
         {
@@ -1573,30 +1527,20 @@ namespace System.Numerics
             return count;
         }
 
-        public override string ToString()
-        {
-            return BigNumber.FormatBigInteger(this, null, NumberFormatInfo.CurrentInfo);
-        }
+        public override string ToString() =>
+            BigNumber.FormatBigInteger(this, null, NumberFormatInfo.CurrentInfo);
 
-        public string ToString(IFormatProvider? provider)
-        {
-            return BigNumber.FormatBigInteger(this, null, NumberFormatInfo.GetInstance(provider));
-        }
+        public string ToString(IFormatProvider? provider) =>
+            BigNumber.FormatBigInteger(this, null, NumberFormatInfo.GetInstance(provider));
 
-        public string ToString([StringSyntax(StringSyntaxAttribute.NumericFormat)] string? format)
-        {
-            return BigNumber.FormatBigInteger(this, format, NumberFormatInfo.CurrentInfo);
-        }
+        public string ToString([StringSyntax(StringSyntaxAttribute.NumericFormat)] string? format) =>
+            BigNumber.FormatBigInteger(this, format, NumberFormatInfo.CurrentInfo);
 
-        public string ToString([StringSyntax(StringSyntaxAttribute.NumericFormat)] string? format, IFormatProvider? provider)
-        {
-            return BigNumber.FormatBigInteger(this, format, NumberFormatInfo.GetInstance(provider));
-        }
+        public string ToString([StringSyntax(StringSyntaxAttribute.NumericFormat)] string? format, IFormatProvider? provider) =>
+            BigNumber.FormatBigInteger(this, format, NumberFormatInfo.GetInstance(provider));
 
-        public bool TryFormat(Span<char> destination, out int charsWritten, [StringSyntax(StringSyntaxAttribute.NumericFormat)] ReadOnlySpan<char> format = default, IFormatProvider? provider = null)
-        {
-            return BigNumber.TryFormatBigInteger(this, format, NumberFormatInfo.GetInstance(provider), destination, out charsWritten);
-        }
+        public bool TryFormat(Span<char> destination, out int charsWritten, [StringSyntax(StringSyntaxAttribute.NumericFormat)] ReadOnlySpan<char> format = default, IFormatProvider? provider = null) =>
+            BigNumber.TryFormatBigInteger(this, format, NumberFormatInfo.GetInstance(provider), destination, out charsWritten);
 
         private static BigInteger Add(ReadOnlySpan<uint> leftBits, int leftSign, ReadOnlySpan<uint> rightBits, int rightSign)
         {
@@ -1746,18 +1690,14 @@ namespace System.Numerics
         // Explicit Conversions From BigInteger
         //
 
-        public static explicit operator byte(BigInteger value)
-        {
-            return checked((byte)((int)value));
-        }
+        public static explicit operator byte(BigInteger value) =>
+            checked((byte)((int)value));
 
         /// <summary>Explicitly converts a big integer to a <see cref="char" /> value.</summary>
         /// <param name="value">The value to convert.</param>
         /// <returns><paramref name="value" /> converted to <see cref="char" /> value.</returns>
-        public static explicit operator char(BigInteger value)
-        {
-            return checked((char)((int)value));
-        }
+        public static explicit operator char(BigInteger value) =>
+            checked((char)((int)value));
 
         public static explicit operator decimal(BigInteger value)
         {
@@ -1820,15 +1760,11 @@ namespace System.Numerics
         /// <summary>Explicitly converts a big integer to a <see cref="Half" /> value.</summary>
         /// <param name="value">The value to convert.</param>
         /// <returns><paramref name="value" /> converted to <see cref="Half" /> value.</returns>
-        public static explicit operator Half(BigInteger value)
-        {
-            return (Half)(double)value;
-        }
+        public static explicit operator Half(BigInteger value) =>
+            (Half)(double)value;
 
-        public static explicit operator short(BigInteger value)
-        {
-            return checked((short)((int)value));
-        }
+        public static explicit operator short(BigInteger value) =>
+            checked((short)((int)value));
 
         public static explicit operator int(BigInteger value)
         {
@@ -1950,21 +1886,15 @@ namespace System.Numerics
         }
 
         [CLSCompliant(false)]
-        public static explicit operator sbyte(BigInteger value)
-        {
-            return checked((sbyte)((int)value));
-        }
+        public static explicit operator sbyte(BigInteger value) =>
+            checked((sbyte)((int)value));
 
-        public static explicit operator float(BigInteger value)
-        {
-            return (float)((double)value);
-        }
+        public static explicit operator float(BigInteger value) =>
+            (float)((double)value);
 
         [CLSCompliant(false)]
-        public static explicit operator ushort(BigInteger value)
-        {
-            return checked((ushort)((int)value));
-        }
+        public static explicit operator ushort(BigInteger value) =>
+            checked((ushort)((int)value));
 
         [CLSCompliant(false)]
         public static explicit operator uint(BigInteger value)
@@ -2060,23 +1990,17 @@ namespace System.Numerics
         // Explicit Conversions To BigInteger
         //
 
-        public static explicit operator BigInteger(decimal value)
-        {
-            return new BigInteger(value);
-        }
+        public static explicit operator BigInteger(decimal value) =>
+            new BigInteger(value);
 
-        public static explicit operator BigInteger(double value)
-        {
-            return new BigInteger(value);
-        }
+        public static explicit operator BigInteger(double value) =>
+            new BigInteger(value);
 
         /// <summary>Explicitly converts a <see cref="Half" /> value to a big integer.</summary>
         /// <param name="value">The value to convert.</param>
         /// <returns><paramref name="value" /> converted to a big integer.</returns>
-        public static explicit operator BigInteger(Half value)
-        {
-            return new BigInteger((float)value);
-        }
+        public static explicit operator BigInteger(Half value) =>
+            new BigInteger((float)value);
 
         /// <summary>Explicitly converts a <see cref="Complex" /> value to a big integer.</summary>
         /// <param name="value">The value to convert.</param>
@@ -2090,42 +2014,30 @@ namespace System.Numerics
             return (BigInteger)value.Real;
         }
 
-        public static explicit operator BigInteger(float value)
-        {
-            return new BigInteger(value);
-        }
+        public static explicit operator BigInteger(float value) =>
+            new BigInteger(value);
 
         //
         // Implicit Conversions To BigInteger
         //
 
-        public static implicit operator BigInteger(byte value)
-        {
-            return new BigInteger(value);
-        }
+        public static implicit operator BigInteger(byte value) =>
+            new BigInteger(value);
 
         /// <summary>Implicitly converts a <see cref="char" /> value to a big integer.</summary>
         /// <param name="value">The value to convert.</param>
         /// <returns><paramref name="value" /> converted to a big integer.</returns>
-        public static implicit operator BigInteger(char value)
-        {
-            return new BigInteger(value);
-        }
+        public static implicit operator BigInteger(char value) =>
+            new BigInteger(value);
 
-        public static implicit operator BigInteger(short value)
-        {
-            return new BigInteger(value);
-        }
+        public static implicit operator BigInteger(short value) =>
+            new BigInteger(value);
 
-        public static implicit operator BigInteger(int value)
-        {
-            return new BigInteger(value);
-        }
+        public static implicit operator BigInteger(int value) =>
+            new BigInteger(value);
 
-        public static implicit operator BigInteger(long value)
-        {
-            return new BigInteger(value);
-        }
+        public static implicit operator BigInteger(long value) =>
+            new BigInteger(value);
 
         /// <summary>Implicitly converts a <see cref="Int128" /> value to a big integer.</summary>
         /// <param name="value">The value to convert.</param>
@@ -2205,28 +2117,20 @@ namespace System.Numerics
         }
 
         [CLSCompliant(false)]
-        public static implicit operator BigInteger(sbyte value)
-        {
-            return new BigInteger(value);
-        }
+        public static implicit operator BigInteger(sbyte value) =>
+            new BigInteger(value);
 
         [CLSCompliant(false)]
-        public static implicit operator BigInteger(ushort value)
-        {
-            return new BigInteger(value);
-        }
+        public static implicit operator BigInteger(ushort value) =>
+            new BigInteger(value);
 
         [CLSCompliant(false)]
-        public static implicit operator BigInteger(uint value)
-        {
-            return new BigInteger(value);
-        }
+        public static implicit operator BigInteger(uint value) =>
+            new BigInteger(value);
 
         [CLSCompliant(false)]
-        public static implicit operator BigInteger(ulong value)
-        {
-            return new BigInteger(value);
-        }
+        public static implicit operator BigInteger(ulong value) =>
+            new BigInteger(value);
 
         /// <summary>Implicitly converts a <see cref="UInt128" /> value to a big integer.</summary>
         /// <param name="value">The value to convert.</param>
@@ -2603,10 +2507,8 @@ namespace System.Numerics
             return result;
         }
 
-        public static BigInteger operator ~(BigInteger value)
-        {
-            return -(value + One);
-        }
+        public static BigInteger operator ~(BigInteger value) =>
+            -(value + One);
 
         public static BigInteger operator -(BigInteger value)
         {
@@ -2620,15 +2522,11 @@ namespace System.Numerics
             return value;
         }
 
-        public static BigInteger operator ++(BigInteger value)
-        {
-            return value + One;
-        }
+        public static BigInteger operator ++(BigInteger value) =>
+            value + One;
 
-        public static BigInteger operator --(BigInteger value)
-        {
-            return value - One;
-        }
+        public static BigInteger operator --(BigInteger value) =>
+            value - One;
 
         public static BigInteger operator +(BigInteger left, BigInteger right)
         {
@@ -2849,161 +2747,104 @@ namespace System.Numerics
             return left.CompareTo(right) < 0;
         }
 
-        public static bool operator <=(BigInteger left, BigInteger right)
-        {
-            return left.CompareTo(right) <= 0;
-        }
+        public static bool operator <=(BigInteger left, BigInteger right) =>
+            left.CompareTo(right) <= 0;
 
-        public static bool operator >(BigInteger left, BigInteger right)
-        {
-            return left.CompareTo(right) > 0;
-        }
-        public static bool operator >=(BigInteger left, BigInteger right)
-        {
-            return left.CompareTo(right) >= 0;
-        }
+        public static bool operator >(BigInteger left, BigInteger right) =>
+            left.CompareTo(right) > 0;
 
-        public static bool operator ==(BigInteger left, BigInteger right)
-        {
-            return left.Equals(right);
-        }
+        public static bool operator >=(BigInteger left, BigInteger right) =>
+            left.CompareTo(right) >= 0;
 
-        public static bool operator !=(BigInteger left, BigInteger right)
-        {
-            return !left.Equals(right);
-        }
+        public static bool operator ==(BigInteger left, BigInteger right) =>
+            left.Equals(right);
 
-        public static bool operator <(BigInteger left, long right)
-        {
-            return left.CompareTo(right) < 0;
-        }
+        public static bool operator !=(BigInteger left, BigInteger right) =>
+            !left.Equals(right);
 
-        public static bool operator <=(BigInteger left, long right)
-        {
-            return left.CompareTo(right) <= 0;
-        }
+        public static bool operator <(BigInteger left, long right) =>
+            left.CompareTo(right) < 0;
 
-        public static bool operator >(BigInteger left, long right)
-        {
-            return left.CompareTo(right) > 0;
-        }
+        public static bool operator <=(BigInteger left, long right) =>
+            left.CompareTo(right) <= 0;
 
-        public static bool operator >=(BigInteger left, long right)
-        {
-            return left.CompareTo(right) >= 0;
-        }
+        public static bool operator >(BigInteger left, long right) =>
+            left.CompareTo(right) > 0;
 
-        public static bool operator ==(BigInteger left, long right)
-        {
-            return left.Equals(right);
-        }
+        public static bool operator >=(BigInteger left, long right) =>
+            left.CompareTo(right) >= 0;
 
-        public static bool operator !=(BigInteger left, long right)
-        {
-            return !left.Equals(right);
-        }
+        public static bool operator ==(BigInteger left, long right) =>
+            left.Equals(right);
 
-        public static bool operator <(long left, BigInteger right)
-        {
-            return right.CompareTo(left) > 0;
-        }
+        public static bool operator !=(BigInteger left, long right) =>
+            !left.Equals(right);
 
-        public static bool operator <=(long left, BigInteger right)
-        {
-            return right.CompareTo(left) >= 0;
-        }
+        public static bool operator <(long left, BigInteger right) =>
+            right.CompareTo(left) > 0;
 
-        public static bool operator >(long left, BigInteger right)
-        {
-            return right.CompareTo(left) < 0;
-        }
+        public static bool operator <=(long left, BigInteger right) =>
+            right.CompareTo(left) >= 0;
 
-        public static bool operator >=(long left, BigInteger right)
-        {
-            return right.CompareTo(left) <= 0;
-        }
+        public static bool operator >(long left, BigInteger right) =>
+            right.CompareTo(left) < 0;
 
-        public static bool operator ==(long left, BigInteger right)
-        {
-            return right.Equals(left);
-        }
+        public static bool operator >=(long left, BigInteger right) =>
+            right.CompareTo(left) <= 0;
 
-        public static bool operator !=(long left, BigInteger right)
-        {
-            return !right.Equals(left);
-        }
+        public static bool operator ==(long left, BigInteger right) =>
+            right.Equals(left);
+
+        public static bool operator !=(long left, BigInteger right) =>
+            !right.Equals(left);
 
         [CLSCompliant(false)]
-        public static bool operator <(BigInteger left, ulong right)
-        {
-            return left.CompareTo(right) < 0;
-        }
+        public static bool operator <(BigInteger left, ulong right) =>
+            left.CompareTo(right) < 0;
 
         [CLSCompliant(false)]
-        public static bool operator <=(BigInteger left, ulong right)
-        {
-            return left.CompareTo(right) <= 0;
-        }
+        public static bool operator <=(BigInteger left, ulong right) =>
+            left.CompareTo(right) <= 0;
 
         [CLSCompliant(false)]
-        public static bool operator >(BigInteger left, ulong right)
-        {
-            return left.CompareTo(right) > 0;
-        }
+        public static bool operator >(BigInteger left, ulong right) =>
+            left.CompareTo(right) > 0;
 
         [CLSCompliant(false)]
-        public static bool operator >=(BigInteger left, ulong right)
-        {
-            return left.CompareTo(right) >= 0;
-        }
+        public static bool operator >=(BigInteger left, ulong right) =>
+            left.CompareTo(right) >= 0;
 
         [CLSCompliant(false)]
-        public static bool operator ==(BigInteger left, ulong right)
-        {
-            return left.Equals(right);
-        }
+        public static bool operator ==(BigInteger left, ulong right) =>
+            left.Equals(right);
 
         [CLSCompliant(false)]
-        public static bool operator !=(BigInteger left, ulong right)
-        {
-            return !left.Equals(right);
-        }
+        public static bool operator !=(BigInteger left, ulong right) =>
+            !left.Equals(right);
 
         [CLSCompliant(false)]
-        public static bool operator <(ulong left, BigInteger right)
-        {
-            return right.CompareTo(left) > 0;
-        }
+        public static bool operator <(ulong left, BigInteger right) =>
+            right.CompareTo(left) > 0;
 
         [CLSCompliant(false)]
-        public static bool operator <=(ulong left, BigInteger right)
-        {
-            return right.CompareTo(left) >= 0;
-        }
+        public static bool operator <=(ulong left, BigInteger right) =>
+            right.CompareTo(left) >= 0;
 
         [CLSCompliant(false)]
-        public static bool operator >(ulong left, BigInteger right)
-        {
-            return right.CompareTo(left) < 0;
-        }
+        public static bool operator >(ulong left, BigInteger right) =>
+            right.CompareTo(left) < 0;
 
         [CLSCompliant(false)]
-        public static bool operator >=(ulong left, BigInteger right)
-        {
-            return right.CompareTo(left) <= 0;
-        }
+        public static bool operator >=(ulong left, BigInteger right) =>
+            right.CompareTo(left) <= 0;
 
         [CLSCompliant(false)]
-        public static bool operator ==(ulong left, BigInteger right)
-        {
-            return right.Equals(left);
-        }
+        public static bool operator ==(ulong left, BigInteger right) =>
+            right.Equals(left);
 
         [CLSCompliant(false)]
-        public static bool operator !=(ulong left, BigInteger right)
-        {
-            return !right.Equals(left);
-        }
+        public static bool operator !=(ulong left, BigInteger right) =>
+            !right.Equals(left);
 
         /// <summary>
         /// Gets the number of bits required for shortest two's complement representation of the current instance without the sign bit.
