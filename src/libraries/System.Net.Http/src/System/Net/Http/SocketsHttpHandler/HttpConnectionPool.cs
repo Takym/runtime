@@ -473,9 +473,16 @@ namespace System.Net.Http
         {
             Debug.Assert(HasSyncObjLock);
 
-            if (!_http11RequestQueue.TryPeekNextRequest(out HttpRequestMessage? request))
+            if (!_http11RequestQueue.TryPeekUncanceledRequest(this, out HttpRequestMessage? request))
             {
                 return;
+            }
+
+            if (NetEventSource.Log.IsEnabled())
+            {
+                Trace($"Available HTTP/1.1 connections: {_availableHttp11Connections.Count}, Requests in the queue: {_http11RequestQueue.Count}, " +
+                    $"Pending HTTP/1.1 connections: {_pendingHttp11ConnectionCount}, Total associated HTTP/1.1 connections: {_associatedHttp11ConnectionCount}, " +
+                    $"Max HTTP/1.1 connection limit: {_maxHttp11Connections}.");
             }
 
             // Determine if we can and should add a new connection to the pool.
@@ -681,7 +688,7 @@ namespace System.Net.Http
         {
             Debug.Assert(HasSyncObjLock);
 
-            if (!_http2RequestQueue.TryPeekNextRequest(out HttpRequestMessage? request))
+            if (!_http2RequestQueue.TryPeekUncanceledRequest(this, out HttpRequestMessage? request))
             {
                 return;
             }
@@ -852,8 +859,10 @@ namespace System.Net.Http
                 {
                     quicConnection = await ConnectHelper.ConnectQuicAsync(request, Settings._quicImplementationProvider ?? QuicImplementationProviders.Default, new DnsEndPoint(authority.IdnHost, authority.Port), _sslOptionsHttp3!, cancellationToken).ConfigureAwait(false);
                 }
-                catch
+                catch (Exception e)
                 {
+                    if (NetEventSource.Log.IsEnabled()) Trace($"QUIC connection failed: {e}");
+
                     // Disables HTTP/3 until server announces it can handle it via Alt-Svc.
                     BlocklistAuthority(authority);
                     throw;
@@ -1575,7 +1584,7 @@ namespace System.Net.Http
 
         private void HandleHttp11ConnectionFailure(Exception e)
         {
-            if (NetEventSource.Log.IsEnabled()) Trace("HTTP/1.1 connection failed");
+            if (NetEventSource.Log.IsEnabled()) Trace($"HTTP/1.1 connection failed: {e}");
 
             lock (SyncObj)
             {
@@ -1594,7 +1603,7 @@ namespace System.Net.Http
 
         private void HandleHttp2ConnectionFailure(Exception e)
         {
-            if (NetEventSource.Log.IsEnabled()) Trace("HTTP2 connection failed");
+            if (NetEventSource.Log.IsEnabled()) Trace($"HTTP2 connection failed: {e}");
 
             lock (SyncObj)
             {
@@ -2186,14 +2195,22 @@ namespace System.Net.Http
                 return false;
             }
 
-            public bool TryPeekNextRequest([NotNullWhen(true)] out HttpRequestMessage? request)
+            public bool TryPeekUncanceledRequest(HttpConnectionPool pool, [MaybeNullWhen(false)] out HttpRequestMessage request)
             {
                 if (_queue is not null)
                 {
-                    if (_queue.TryPeek(out QueueItem item))
+                    while (_queue.TryPeek(out QueueItem item))
                     {
-                        request = item.Request;
-                        return true;
+                        if (item.Waiter.Task.IsCanceled)
+                        {
+                            if (NetEventSource.Log.IsEnabled()) pool.Trace("Discarding canceled request from queue.");
+                            _queue.Dequeue();
+                        }
+                        else
+                        {
+                            request = item.Request;
+                            return true;
+                        }
                     }
                 }
 
