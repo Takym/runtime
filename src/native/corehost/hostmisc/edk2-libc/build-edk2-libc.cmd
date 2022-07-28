@@ -2,6 +2,9 @@
 
 setlocal
 
+cd %~dp0
+echo Working on: %CD%
+
 set MODULES=%~dp0../../../../../modules/
 
 set EDK_TOOLS_PATH=%MODULES%edk2/BaseTools
