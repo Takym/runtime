@@ -21,6 +21,7 @@ list(APPEND HEADERS
 )
 
 add_executable(${DOTNET_PROJECT_NAME} ${SOURCES} ${RESOURCES})
+target_link_libraries(${DOTNET_PROJECT_NAME} ${LIBRARIES})
 
 if(NOT CLR_CMAKE_TARGET_WIN32)
     disable_pax_mprotect(${DOTNET_PROJECT_NAME})

@@ -14,6 +14,7 @@ if (BUILD_OBJECT_LIBRARY)
 else ()
     add_library(lib${DOTNET_PROJECT_NAME} STATIC ${SOURCES} ${RESOURCES})
 endif ()
+target_link_libraries(lib${DOTNET_PROJECT_NAME} ${LIBRARIES})
 
 set_target_properties(lib${DOTNET_PROJECT_NAME} PROPERTIES MACOSX_RPATH TRUE)
 set_target_properties(lib${DOTNET_PROJECT_NAME} PROPERTIES PREFIX "")

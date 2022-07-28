@@ -6,22 +6,18 @@ cd %~dp0
 echo Working on: %CD%
 
 set MODULES=%~dp0../../../../../modules/
-
-set EDK_TOOLS_PATH=%MODULES%edk2/BaseTools
-set EDK_TOOLS_BIN=%MODULES%edk2-BaseTools-win32
 set WORKSPACE=%~dp0temp
 set CONF_PATH=%~dp0
 
 if exist "%WORKSPACE%\" goto build
-xcopy /E /Y "%MODULES%edk2\MdeModulePkg"                    "%WORKSPACE%\MdeModulePkg\"
-xcopy /E /Y "%MODULES%edk2\MdePkg"                          "%WORKSPACE%\MdePkg\"
-xcopy /E /Y "%MODULES%edk2\ShellPkg"                        "%WORKSPACE%\ShellPkg\"
-xcopy /E /Y "%MODULES%edk2-libc\AppPkg"                     "%WORKSPACE%\AppPkg\"
-xcopy /E /Y "%MODULES%edk2-libc\StdLib"                     "%WORKSPACE%\StdLib\"
-xcopy /E /Y "%MODULES%edk2-libc\StdLibPrivateInternalFiles" "%WORKSPACE%\StdLibPrivateInternalFiles\"
+echo Downloading EDK 2 from the modules directory...
+xcopy /E /Y "%MODULES%edk2"                 "%WORKSPACE%\"
+xcopy /E /Y "%MODULES%edk2-libc"            "%WORKSPACE%\"
+xcopy /E /Y "%MODULES%edk2-BaseTools-win32" "%WORKSPACE%\BaseTools\Bin\Win32\"
+echo Downloded
 
 :build
-call %MODULES%edk2/edksetup.bat
+call "%WORKSPACE%\edksetup.bat"
 call build
 
 endlocal

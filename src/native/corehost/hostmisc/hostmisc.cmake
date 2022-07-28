@@ -32,11 +32,10 @@ if(CLR_CMAKE_TARGET_WIN32)
         ${CMAKE_CURRENT_LIST_DIR}/longfile.h)
 elseif(CLR_CMAKE_TARGET_UEFI)
     list(APPEND SOURCES
-        ${CMAKE_CURRENT_LIST_DIR}/pal.uefi.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/crt.uefi.cpp)
+        ${CMAKE_CURRENT_LIST_DIR}/pal.uefi.cpp)
     list(APPEND HEADERS
         ${CMAKE_CURRENT_LIST_DIR}/pal.uefi.h)
-    include(${CMAKE_CURRENT_LIST_DIR}/crt_uefi.cmake)
+    include(${CMAKE_CURRENT_LIST_DIR}/edk2-libc/crt.cmake)
 else()
     list(APPEND SOURCES
         ${CMAKE_CURRENT_LIST_DIR}/pal.unix.cpp)

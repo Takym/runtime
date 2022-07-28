@@ -8905,5 +8905,17 @@
     "uefi",
     "any",
     "base"
+  ],
+  "uefi-arm": [
+    "uefi-arm",
+    "uefi",
+    "any",
+    "base"
+  ],
+  "uefi-arm64": [
+    "uefi-arm64",
+    "uefi",
+    "any",
+    "base"
   ]
 }

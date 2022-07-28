@@ -250,7 +250,7 @@
 
     <RuntimeGroup Include="uefi">
       <Parent>any</Parent>
-      <Architectures>x64;x86</Architectures>
+      <Architectures>x64;x86;arm;arm64</Architectures>
     </RuntimeGroup>
 
     <!-- add corert to all RIDs -->
