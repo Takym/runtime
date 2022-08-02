@@ -4,6 +4,3 @@
 [submodule "modules/edk2-libc"]
 	path = modules/edk2-libc
 	url = https://github.com/tianocore/edk2-libc.git
-[submodule "modules/edk2-BaseTools-win32"]
-	path = modules/edk2-BaseTools-win32
-	url = https://github.com/tianocore/edk2-BaseTools-win32.git

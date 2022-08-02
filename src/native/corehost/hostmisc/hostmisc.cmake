@@ -35,7 +35,7 @@ elseif(CLR_CMAKE_TARGET_UEFI)
         ${CMAKE_CURRENT_LIST_DIR}/pal.uefi.cpp)
     list(APPEND HEADERS
         ${CMAKE_CURRENT_LIST_DIR}/pal.uefi.h)
-    include(${CMAKE_CURRENT_LIST_DIR}/edk2-libc/crt.cmake)
+    include(${CMAKE_CURRENT_LIST_DIR}/crt.uefi.cmake)
 else()
     list(APPEND SOURCES
         ${CMAKE_CURRENT_LIST_DIR}/pal.unix.cpp)

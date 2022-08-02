@@ -8,7 +8,6 @@ set(SKIP_VERSIONING 1)
 include(${CMAKE_CURRENT_LIST_DIR}/../common.cmake)
 
 add_executable(${DOTNET_PROJECT_NAME} ${SOURCES})
-target_link_libraries(${DOTNET_PROJECT_NAME} ${LIBRARIES})
 
 install_with_stripped_symbols(${DOTNET_PROJECT_NAME} TARGETS corehost_test)
 

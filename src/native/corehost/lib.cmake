@@ -15,7 +15,6 @@ if(CLR_CMAKE_TARGET_UEFI)
 else()
     add_library(${DOTNET_PROJECT_NAME} SHARED ${SOURCES} ${RESOURCES})
 endif()
-target_link_libraries(${DOTNET_PROJECT_NAME} ${LIBRARIES})
 
 set_target_properties(${DOTNET_PROJECT_NAME} PROPERTIES MACOSX_RPATH TRUE)
 
