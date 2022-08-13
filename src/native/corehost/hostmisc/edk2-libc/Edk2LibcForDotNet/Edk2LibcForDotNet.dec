@@ -1,0 +1,7 @@
+# Reference: https://osdev-jp.readthedocs.io/ja/latest/2017/create-uefi-app-with-edk2.html#dec
+
+[Defines]
+  DEC_SPECIFICATION = 0x00010005
+  PACKAGE_NAME      = Edk2LibcForDotNet
+  PACKAGE_GUID      = 2f7c7d25-1c4b-47f0-b286-1a8519d2b0f2
+  PACKAGE_VERSION   = 6.0.7
